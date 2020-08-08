@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\DocumentDefinition;
+use App\Document;
 use Livewire\Component;
 
 class TransporterDocDefinitionHandler extends Component
@@ -11,13 +11,13 @@ class TransporterDocDefinitionHandler extends Component
 
     public $logo;
 
-    public $documentDefinition;
+    public $document;
 
     public $type;
 
     public function mount($organizationDocId, $type)
     {
-        $this->organizationDoc = DocumentDefinition::find($organizationDocId)->toArray();
+        $this->organizationDoc = Document::find($organizationDocId)->toArray();
         $this->type = $type;
     }
 

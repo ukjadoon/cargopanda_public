@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\DocumentDefinition;
+use App\Document;
 use Livewire\Component;
 
 class AdminOrganizationDocs extends Component
@@ -13,7 +13,7 @@ class AdminOrganizationDocs extends Component
 
     public function mount()
     {
-        $this->organizationDocs = DocumentDefinition::where('type', 'organization_doc')->get()->toArray();
+        $this->organizationDocs = Document::where('type', 'organization_doc')->get()->toArray();
         $this->newOrganizationDocs = [];
     }
 

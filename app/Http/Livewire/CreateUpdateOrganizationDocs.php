@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\DocumentDefinition;
+use App\Document;
 use Livewire\Component;
 
 class CreateUpdateOrganizationDocs extends Component
@@ -16,7 +16,7 @@ class CreateUpdateOrganizationDocs extends Component
         $this->organizationDocId = $organizationDocId;
         $this->organizationDoc = [];
         if ($organizationDocId) {
-            $this->organizationDoc = DocumentDefinition::find($organizationDocId)->toArray();
+            $this->organizationDoc = Document::find($organizationDocId)->toArray();
         }
     }
 
@@ -28,7 +28,7 @@ class CreateUpdateOrganizationDocs extends Component
                 'description' => '',
             ];
         } else {
-            $this->organizationDoc = DocumentDefinition::find($this->organizationDocId)->toArray();
+            $this->organizationDoc = Document::find($this->organizationDocId)->toArray();
         }
     }
 
@@ -44,9 +44,9 @@ class CreateUpdateOrganizationDocs extends Component
             'organizationDoc.description' => 'min:5',
         ]);
         if (! $this->organizationDocId) {
-            $this->organizationDocId = DocumentDefinition::create(['name' => $this->organizationDoc['name'], 'description' => $this->organizationDoc['description'], 'type' => 'organization_doc']);
+            $this->organizationDocId = Document::create(['name' => $this->organizationDoc['name'], 'description' => $this->organizationDoc['description'], 'type' => 'organization_doc']);
         } else {
-            DocumentDefinition::find($this->organizationDocId)->update([
+            Document::find($this->organizationDocId)->update([
                 'name' => $this->organizationDoc['name'],
                 'description' => $this->organizationDoc['description']
             ]);

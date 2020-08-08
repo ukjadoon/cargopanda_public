@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\DocumentDefinition;
+use App\Document;
 use Livewire\Component;
 
 class AdminTruckDocs extends Component
@@ -13,7 +13,7 @@ class AdminTruckDocs extends Component
 
     public function mount()
     {
-        $this->truckDocs = DocumentDefinition::where('type', 'truck_doc')->get()->toArray();
+        $this->truckDocs = Document::where('type', 'truck_doc')->get()->toArray();
         $this->newTruckDocs = [];
     }
 

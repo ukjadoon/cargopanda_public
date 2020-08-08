@@ -11,7 +11,7 @@
                     </p>
                 </div>
                 <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
-                    <x-transporter.upload-document :logo="$logo" :documentDefinition="$documentDefinition"></x-transporter.upload-document>
+                    <x-transporter.upload-document :logo="$logo" :document="$document"></x-transporter.upload-document>
                 </div>
             </div>
         </div>

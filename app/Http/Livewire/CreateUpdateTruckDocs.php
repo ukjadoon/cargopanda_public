@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\DocumentDefinition;
+use App\Document;
 use Livewire\Component;
 
 class CreateUpdateTruckDocs extends Component
@@ -16,7 +16,7 @@ class CreateUpdateTruckDocs extends Component
         $this->truckDocId = $truckDocId;
         $this->truckDoc = [];
         if ($truckDocId) {
-            $this->truckDoc = DocumentDefinition::find($truckDocId)->toArray();
+            $this->truckDoc = Document::find($truckDocId)->toArray();
         }
     }
 
@@ -28,7 +28,7 @@ class CreateUpdateTruckDocs extends Component
                 'description' => '',
             ];
         } else {
-            $this->truckDoc = DocumentDefinition::find($this->truckDocId)->toArray();
+            $this->truckDoc = Document::find($this->truckDocId)->toArray();
         }
     }
 
@@ -44,9 +44,9 @@ class CreateUpdateTruckDocs extends Component
             'truckDoc.description' => 'min:5',
         ]);
         if (! $this->truckDocId) {
-            $this->truckDocId = DocumentDefinition::create(['name' => $this->truckDoc['name'], 'description' => $this->truckDoc['description'], 'type' => 'truck_doc'])->id;
+            $this->truckDocId = Document::create(['name' => $this->truckDoc['name'], 'description' => $this->truckDoc['description'], 'type' => 'truck_doc'])->id;
         } else {
-            DocumentDefinition::find($this->truckDocId)->update([
+            Document::find($this->truckDocId)->update([
                 'name' => $this->truckDoc['name'],
                 'description' => $this->truckDoc['description']
             ]);

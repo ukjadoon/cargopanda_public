@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\DocumentDefinition;
+use App\Document;
 use Livewire\Component;
 
 class TransporterOrganizationDocs extends Component
@@ -11,7 +11,7 @@ class TransporterOrganizationDocs extends Component
 
     public function mount()
     {
-        $this->organizationDocs = DocumentDefinition::where('type', 'organization_doc')->get()->toArray();
+        $this->organizationDocs = Document::where('type', 'organization_doc')->get()->toArray();
     }
 
     public function render()
