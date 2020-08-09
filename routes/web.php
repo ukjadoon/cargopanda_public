@@ -41,5 +41,7 @@ Route::prefix('admin')->group(function () {
     Route::get('organization-documentation', 'AdminController@organizationDocumentation')->name('admin-organization-documentation');
     Route::get('organization-doc/{documentId}/{organizationId}', 'AdminController@showOrganizationDoc')->name('admin-show-organization-doc');
     Route::get('organization-doc-source/{documentId}/{organizationId}', 'AdminController@showOrganizationDocSource')->name('admin-show-organization-doc-source');
+    Route::get('truck-doc/{documentId}/{truckId}', 'AdminController@showTruckDoc')->name('admin-show-truck-doc');
+    Route::get('truck-doc-source/{documentId}/{truckId}', 'AdminController@showTruckDocSource')->name('admin-show-truck-doc-source');
     Route::get('logout', 'AdminController@logout')->name('admin-logout');
 });
