@@ -21,9 +21,12 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\TokenRequested' => [
             'App\Listeners\SendLoginEmail',
         ],
-        'App\Events\DocumentApproved' => [
-            'App\Listeners\SendApprovedEmail',
+        'App\Events\OrganizationDocApproved' => [
+            'App\Listeners\SendOrganizationDocApprovedEmail',
         ],
+        'App\Events\TruckDocApproved' => [
+            'App\Listeners\SendTruckDocApprovedEmail',
+        ]
     ];
 
     /**
