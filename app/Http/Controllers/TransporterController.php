@@ -6,6 +6,7 @@ use App\Document;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRegisterCompany;
 use App\Organization;
+use App\Truck;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -57,9 +58,13 @@ class TransporterController extends Controller
         return view('transporter.organization');
     }
 
-    public function truckDocumentation()
+    public function truckDocumentation($slug)
     {
+        $truck = Truck::where('slug', $slug)
+            ->where('organization_id', Auth::user()->organization_id)
+            ->firstOrFail();
 
+        return view('transporter.truck-documentation')->with(compact('truck'));
     }
 
     public function truckDocumentationIndex()
@@ -78,6 +83,15 @@ class TransporterController extends Controller
         if ($result->pivot) {
             
             return response()->file(Storage::disk('organizationDocuments')->path($result->pivot->url));
+        }
+    }
+
+    public function showTruckDoc($id, $truckId)
+    {
+        $result = Document::find($id)->trucks()->where('id', $truckId)->first();
+        if ($result->pivot) {
+            
+            return response()->file(Storage::disk('truckDocuments')->path($result->pivot->url));
         }
     }
 }

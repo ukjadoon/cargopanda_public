@@ -20,12 +20,15 @@ class TransporterDocHandler extends Component
 
     public $pivot;
 
+    public $truckId;
+
     protected $listeners = ['reloadDocument' => 'reloadDocument'];
 
-    public function mount($organizationDocId, $type)
+    public function mount($organizationDocId, $type, $truckId = '')
     {
         $this->organizationDocId = $organizationDocId;
         $this->type = $type;
+        $this->truckId = $truckId;
         $this->loadInitialData();
     }
 
@@ -40,7 +43,11 @@ class TransporterDocHandler extends Component
     {
         $this->organizationDocModel = Document::find($this->organizationDocId);
         $this->organizationDoc = $this->organizationDocModel->toArray();
-        $this->pivot = $this->organizationDocModel->organizations->toArray();
+        if (! $this->truckId) {
+            $this->pivot = $this->organizationDocModel->organizations->toArray();
+        } else {
+            $this->pivot = $this->organizationDocModel->trucks->toArray();
+        }
     }
 
     public function render()

@@ -32,6 +32,7 @@ Route::prefix('transporter')->group(function () {
     Route::get('truck-documentation', 'TransporterController@truckDocumentationIndex')->name('transporter-truck-documentation-index');
     Route::get('organization/documentation', 'TransporterController@organizationDocumentation')->name('transporter-organization-documentation');
     Route::get('organization-doc/{id}', 'TransporterController@showOrganizationDoc');
+    Route::get('truck-doc/{id}/{truckId}', 'TransporterController@showTruckDoc');
 });
 Route::prefix('admin')->group(function () {
     Route::get('dashboard', 'AdminController@dashboard')->name('admin-dashboard');

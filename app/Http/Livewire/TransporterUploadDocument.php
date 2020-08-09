@@ -18,14 +18,18 @@ class TransporterUploadDocument extends Component
     public $document;
     public $documentModel;
     public $pivot;
+    public $truckId;
 
-    public function mount($document, $type)
+    public function mount($document, $type, $truckId = '')
     {
         $this->document = $document;
         $this->documentModel = Document::find($document['id']);
         $this->type = $type;
-        $model = $this->type == 'organization_doc' ? 'organizations' : 'trucks';
-        $this->pivot = $this->documentModel->{$model}->toArray();
+        $pivotModel = $this->type == 'organization_doc' ? 'organizations' : 'trucks';
+        $pivotIdentifier = $this->type == 'organization_doc' ? 'organization_id' : 'truck_id';
+        $pivotId = $this->type == 'organization_doc' ? Auth::user()->organization_id : $truckId;
+        $this->pivot = $this->documentModel->{$pivotModel}()->wherePivot($pivotIdentifier, $pivotId)->get()->toArray();
+        $this->truckId = $truckId;
     }
 
     public function updatedLogo()
@@ -34,13 +38,23 @@ class TransporterUploadDocument extends Component
             'logo' => 'image|max:10240|nullable'
         ]);
         $path = $this->saveImage($this->document['id'], $this->type);
-        $this->documentModel->organizations()->sync([
-            Auth::user()->organization_id => [
-                'url' => $path,
-                'status' => 'pending',
-                'file_type' => pathinfo($path)['extension']
-            ]
-        ]);
+        if ($this->type == 'organization_doc') {
+            $this->documentModel->organizations()->sync([
+                Auth::user()->organization_id => [
+                    'url' => $path,
+                    'status' => 'pending',
+                    'file_type' => pathinfo($path)['extension']
+                ]
+            ]);
+        } else {
+            $this->documentModel->trucks()->sync([
+                $this->truckId => [
+                    'url' => $path,
+                    'status' => 'pending',
+                    'file_type' => pathinfo($path)['extension']
+                ]
+            ]);
+        }
         $this->documentModel = Document::find($this->document['id']);
         $model = $this->type == 'organization_doc' ? 'organizations' : 'trucks';
         $this->pivot = $this->documentModel->{$model}->toArray();

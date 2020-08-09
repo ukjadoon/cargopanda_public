@@ -7,8 +7,10 @@
             <div class="flex justify-center py-2">
                 @if($logo)
                 <img src="{{ $logo->temporaryUrl() }}" class="min-h-full h-20" />
-                @elseif(isset($pivot) && $pivot)
+                @elseif(isset($pivot) && $pivot && !$truckId)
                 <img src="{{ '/transporter/organization-doc/' . $document['id'] }}" class="min-h-full h-20" />
+                @elseif(isset($pivot) && $pivot && $truckId)
+                <img src="{{ '/transporter/truck-doc/' . $document['id'] . '/' . $truckId }}" class="min-h-full h-20" />
                 @endif
             </div>
             @if(empty($pivot))

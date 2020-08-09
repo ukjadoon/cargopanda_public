@@ -17,7 +17,7 @@
                     @endif
                 </div>
                 <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
-                    <livewire:transporter-upload-document :document="$organizationDoc" :type="$type" :key="$organizationDoc['id']" />
+                    <livewire:transporter-upload-document :document="$organizationDoc" :type="$type" :truckId="$truckId" :key="$organizationDoc['id']" />
                 </div>
             </div>
         </div>

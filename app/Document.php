@@ -12,4 +12,9 @@ class Document extends Model
     {
         return $this->belongsToMany('App\Organization')->using('App\DocumentOrganization')->withPivot('url', 'status', 'comment', 'expires_on')->withTimestamps();
     }
+
+    public function trucks()
+    {
+        return $this->belongsToMany('App\Truck')->using('App\DocumentTruck')->withPivot('url', 'status', 'comment', 'expires_on')->withTimestamps();
+    }
 }
