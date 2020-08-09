@@ -51,5 +51,6 @@ class CreateUpdateChecklist extends Component
                 'description' => $this->checklist['description']
             ]);
         }
+        $this->emit('success', 'Checklist updated successfully');
     }
 }

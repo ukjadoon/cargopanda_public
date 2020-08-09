@@ -33,6 +33,7 @@ class CreateUpdateTruck extends Component
                 'name' => $this->truck['name']
             ]);
         }
+        $this->emit('success', 'Truck information updated successfully');
     }
 
     public function resetModel()

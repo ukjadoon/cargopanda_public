@@ -51,5 +51,6 @@ class CreateUpdateTruckDocs extends Component
                 'description' => $this->truckDoc['description']
             ]);
         }
+        $this->emit('success', 'Truck document updated successfully');
     }
 }

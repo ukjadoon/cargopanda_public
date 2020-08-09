@@ -51,5 +51,6 @@ class CreateUpdateOrganizationDocs extends Component
                 'description' => $this->organizationDoc['description']
             ]);
         }
+        $this->emit('success', 'Organization doc updated successfully');
     }
 }

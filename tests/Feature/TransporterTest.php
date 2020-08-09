@@ -23,6 +23,7 @@ test('it should have a checklist page for the transporter', function () {
         'route' => '/transporter/checklist',
         'view' => 'transporter.checklist',
         'see' => 'Checklist',
+        'livewire' => 'transporter-checklist',
     ];
     assertBackend($options);
 });

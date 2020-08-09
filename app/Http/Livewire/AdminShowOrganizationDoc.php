@@ -47,5 +47,6 @@ class AdminShowOrganizationDoc extends Component
             ]
         ]);
         $this->showApproveButton = false;
+        $this->emit('success', 'Document expiry date added successfully');
     }
 }
