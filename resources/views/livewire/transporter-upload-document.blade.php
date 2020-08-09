@@ -7,11 +7,11 @@
             <div class="flex justify-center py-2">
                 @if($logo)
                 <img src="{{ $logo->temporaryUrl() }}" class="min-h-full h-20" />
-                @elseif(isset($client['logo']) && $client['logo'])
-                <img src="{{ Storage::disk('logos')->url($client['logo']) }}" class="min-h-full h-20" />
+                @elseif(isset($pivot) && $pivot)
+                <img src="{{ '/transporter/organization-doc/' . $document['id'] }}" class="min-h-full h-20" />
                 @endif
             </div>
-            @if(empty($logo) && empty($client['logo']))
+            @if(empty($pivot))
             <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
                 <path
                     d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
@@ -20,7 +20,7 @@
             @endif
             <x-common.error property="logo"></x-common.error>
             <p class="mt-1 text-sm text-gray-600">
-                <button type="button" @click="$refs.logoInput.click()"
+                <button type="button" @click="$refs.logoInput{{ $document['id'] }}.click()"
                     class="font-medium text-red-600 hover:text-red-500 focus:outline-none focus:underline transition duration-150 ease-in-out">
                     Upload a file
                 </button>
@@ -28,7 +28,7 @@
             <p class="mt-1 text-xs text-gray-500">
                 PNG, JPG up to 10MB
             </p>
-            <input x-ref="logoInput" type="file" wire:model="logo" class="hidden" accept=".jpg,.png,.jpeg" />
+            <input x-ref="logoInput{{ $document['id'] }}" type="file" wire:model="logo" class="hidden" accept=".jpg,.png,.jpeg" />
         </div>
     </div>
 </div>

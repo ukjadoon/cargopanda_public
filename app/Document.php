@@ -10,6 +10,6 @@ class Document extends Model
 
     public function organizations()
     {
-        return $this->belongsToMany('App\Organization')->using('App\DocumentOrganization');
+        return $this->belongsToMany('App\Organization')->using('App\DocumentOrganization')->withPivot('url', 'status', 'comment', 'expires_on')->withTimestamps();
     }
 }

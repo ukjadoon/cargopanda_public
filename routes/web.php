@@ -31,11 +31,14 @@ Route::prefix('transporter')->group(function () {
     Route::get('trucks/{slug}/documentation', 'TransporterController@truckDocumentation')->name('transporter-truck-documentation');
     Route::get('truck-documentation', 'TransporterController@truckDocumentationIndex')->name('transporter-truck-documentation-index');
     Route::get('organization/documentation', 'TransporterController@organizationDocumentation')->name('transporter-organization-documentation');
+    Route::get('organization-doc/{id}', 'TransporterController@showOrganizationDoc');
 });
 Route::prefix('admin')->group(function () {
     Route::get('dashboard', 'AdminController@dashboard')->name('admin-dashboard');
     Route::get('checklist', 'AdminController@checklist')->name('admin-checklist');
     Route::get('truck-documentation', 'AdminController@truckDocumentation')->name('admin-truck-documentation');
     Route::get('organization-documentation', 'AdminController@organizationDocumentation')->name('admin-organization-documentation');
+    Route::get('organization-doc/{documentId}/{organizationId}', 'AdminController@showOrganizationDoc')->name('admin-show-organization-doc');
+    Route::get('organization-doc-source/{documentId}/{organizationId}', 'AdminController@showOrganizationDocSource')->name('admin-show-organization-doc-source');
     Route::get('logout', 'AdminController@logout')->name('admin-logout');
 });

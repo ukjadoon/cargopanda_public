@@ -48,6 +48,20 @@ return [
             'root' => storage_path('app'),
         ],
 
+        'organizationDocuments' => [
+            'driver' => 'local',
+            'root' => storage_path('organization-documents'),
+            //'url' => env('APP_URL') . '/organization-documents',
+            //'visibility' => 'public',
+        ],
+
+        'truckDocuments' => [
+            'driver' => 'local',
+            'root' => storage_path('truck-documents'),
+            'url' => env('APP_URL') . '/truck-documents',
+            //'visibility' => 'public',
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

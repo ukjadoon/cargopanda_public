@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Document;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRegisterCompany;
 use App\Organization;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class TransporterController extends Controller
 {
@@ -68,5 +70,14 @@ class TransporterController extends Controller
     public function organizationDocumentation()
     {
         return view('transporter.organization-documentation');
+    }
+
+    public function showOrganizationDoc($id)
+    {
+        $result = Document::find($id)->organizations()->where('id', Auth::user()->organization_id)->first();
+        if ($result->pivot) {
+            
+            return response()->file(Storage::disk('organizationDocuments')->path($result->pivot->url));
+        }
     }
 }

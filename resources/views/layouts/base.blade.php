@@ -18,6 +18,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ url(mix('css/app.css')) }}">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
         @livewireStyles
 
         <!-- CSRF Token -->
@@ -27,7 +28,9 @@
     <body>
         @yield('body')
 
-        <script src="{{ url(mix('js/app.js')) }}"></script>
         @livewireScripts
+        <script src="{{ url(mix('js/app.js')) }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+        @stack('scripts')
     </body>
 </html>

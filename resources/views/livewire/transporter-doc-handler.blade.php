@@ -9,9 +9,15 @@
                     <p class="mt-1 text-sm leading-5 text-gray-500">
                         {{ $organizationDoc['description'] }}
                     </p>
+                    @if ($pivot)
+                    <p class="mt-1 text-sm leading-5 text-gray-700 font-semibold">Status: {{ $pivot[0]['pivot']['status'] }}</p>
+                        @if ($pivot[0]['pivot']['comment'])
+                        <p class="mt-1 text-sm leading-5 text-gray-500">Comment: {{ $pivot[0]['pivot']['comment'] }}</p>
+                        @endif
+                    @endif
                 </div>
                 <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
-                    <x-transporter.upload-document :logo="$logo" :document="$document"></x-transporter.upload-document>
+                    <livewire:transporter-upload-document :document="$organizationDoc" :type="$type" :key="$organizationDoc['id']" />
                 </div>
             </div>
         </div>

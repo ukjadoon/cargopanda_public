@@ -9,6 +9,8 @@ class TransporterOrganizationDocs extends Component
 {
     public $organizationDocs;
 
+    public $logo;
+
     public function mount()
     {
         $this->organizationDocs = Document::where('type', 'organization_doc')->get()->toArray();

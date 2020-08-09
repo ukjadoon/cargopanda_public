@@ -10,6 +10,8 @@ class Organization extends Model
 
     public function documents()
     {
-        return $this->belongsToMany('App\Document')->using('App\DocumentOrganization');
+        return $this->belongsToMany('App\Document')
+            ->using('App\DocumentOrganization')
+            ->withTimestamps();
     }
 }
