@@ -14,19 +14,23 @@ class EventServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $listen = [
+    /*protected $listen = [
         // Registered::class => [
         //     SendEmailVerificationNotification::class,
         // ],
         'App\Events\TokenRequested' => [
             'App\Listeners\SendLoginEmail',
         ],
-        'App\Events\OrganizationDocApproved' => [
-            'App\Listeners\SendOrganizationDocApprovedEmail',
-        ],
-        'App\Events\TruckDocApproved' => [
-            'App\Listeners\SendTruckDocApprovedEmail',
-        ]
+    ];*/
+
+    /**
+     * The subscriber classes to register.
+     *
+     * @var array
+     */
+    protected $subscribe = [
+        'App\Listeners\SendEmailNotification',
+        'App\Listeners\SendSlackNotification',
     ];
 
     /**

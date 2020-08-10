@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Document;
+use App\Events\TruckDocApproved;
 use Livewire\Component;
 
 class AdminShowTruckDoc extends Component
@@ -46,5 +47,6 @@ class AdminShowTruckDoc extends Component
         ]);
         $this->showApproveButton = false;
         $this->emit('success', 'Document expiry date added successfully');
+        event(new TruckDocApproved($model, $this->truckId));
     }
 }

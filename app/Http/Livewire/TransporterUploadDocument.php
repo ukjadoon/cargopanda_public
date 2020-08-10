@@ -3,6 +3,9 @@
 namespace App\Http\Livewire;
 
 use App\Document;
+use App\Events\DocumentUploaded;
+use App\Events\Payloads\Slack\OrganizationDoc;
+use App\Events\Payloads\Slack\TruckDoc;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
@@ -58,6 +61,14 @@ class TransporterUploadDocument extends Component
         $this->documentModel = Document::find($this->document['id']);
         $model = $this->type == 'organization_doc' ? 'organizations' : 'trucks';
         $this->pivot = $this->documentModel->{$model}->toArray();
+        if ($model == 'trucks') {
+            $truckDoc = new TruckDoc($this->documentModel, $this->truckId, Auth::user()->organization_id);
+            event(new DocumentUploaded($truckDoc));
+        }
+        if ($model == 'organizations') {
+            $orgDoc = new OrganizationDoc($this->documentModel, Auth::user()->organization_id);
+            event(new DocumentUploaded($orgDoc));
+        }
         $this->emit('reloadDocument', $this->document['id']);
     }
 

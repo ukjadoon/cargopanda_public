@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Document;
+use App\Events\OrganizationDocApproved;
 use Illuminate\Support\Facades\Storage;
 
 class AdminShowOrganizationDoc extends Component
@@ -48,5 +49,6 @@ class AdminShowOrganizationDoc extends Component
         ]);
         $this->showApproveButton = false;
         $this->emit('success', 'Document expiry date added successfully');
+        event(new OrganizationDocApproved($this->organizationId, $model));
     }
 }

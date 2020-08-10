@@ -10,7 +10,7 @@
                 @elseif(isset($pivot) && $pivot && !$truckId)
                 <img src="{{ '/transporter/organization-doc/' . $document['id'] }}" class="min-h-full h-20" />
                 @elseif(isset($pivot) && $pivot && $truckId)
-                <img src="{{ '/transporter/truck-doc/' . $document['id'] . '/' . $truckId }}" class="min-h-full h-20" />
+                <img src="{{ '/transporter/truck-doc/' . $document['id'] . '/' . $truckId . '?' . rand() }}" class="min-h-full h-20" />
                 @endif
             </div>
             @if(empty($pivot))
