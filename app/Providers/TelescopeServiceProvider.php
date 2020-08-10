@@ -63,9 +63,16 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
     protected function gate()
     {
         Gate::define('viewTelescope', function ($user) {
-            return in_array($user->email, [
-                //
-            ]);
+            $password = request()->input('pass');
+            
+            if ($password == env('TELESCOPE_PASSWORD')) {
+                request()->session()->put('TELESCOPE_PASSWORD', $password);
+            }
+
+            return env('TELESCOPE_PASSWORD') == request()->session()->get('TELESCOPE_PASSWORD', null);
+            // return in_array($user->email, [
+            //     //
+            // ]);
         });
     }
 }
