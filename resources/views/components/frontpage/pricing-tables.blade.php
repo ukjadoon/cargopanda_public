@@ -32,7 +32,7 @@
                           €
                         </span>
                         <span class="font-extrabold">
-                          5
+                          50
                         </span>
                       </span>
                       <span class="text-xl leading-7 font-medium text-gray-500">
@@ -106,11 +106,11 @@
                         €
                       </span>
                       <span class="font-extrabold">
-                        42
+                        250
                       </span>
                     </span>
                     <span class="text-2xl leading-8 font-medium text-gray-500">
-                      /month
+                      /half year
                     </span>
                   </div>
                 </div>
@@ -124,7 +124,7 @@
                       </svg>
                     </div>
                     <p class="ml-3 text-base leading-6 font-medium text-gray-500">
-                      Quia rem est sed impedit magnam
+                      Save €50
                     </p>
                   </li>
                   <li class="mt-4 flex items-start">
@@ -192,11 +192,11 @@
                           €
                         </span>
                         <span class="font-extrabold">
-                          79
+                          500
                         </span>
                       </span>
                       <span class="text-xl leading-7 font-medium text-gray-500">
-                        /month
+                        /year
                       </span>
                     </div>
                   </div>
@@ -210,7 +210,7 @@
                         </svg>
                       </div>
                       <p class="ml-3 text-base leading-6 font-medium text-gray-500">
-                        Pariatur quod similique
+                        Save €100
                       </p>
                     </li>
                     <li class="mt-4 flex items-start">
