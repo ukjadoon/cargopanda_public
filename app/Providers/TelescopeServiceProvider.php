@@ -21,7 +21,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
         $this->hideSensitiveRequestDetails();
 
         Telescope::filter(function (IncomingEntry $entry) {
-            /*if ($this->app->environment('local')) {
+            if ($this->app->environment('local')) {
                 return true;
             }
 
@@ -29,8 +29,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
                    $entry->isFailedRequest() ||
                    $entry->isFailedJob() ||
                    $entry->isScheduledTask() ||
-                   $entry->hasMonitoredTag();*/
-            return true;
+                   $entry->hasMonitoredTag();
         });
     }
 
@@ -65,14 +64,13 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
     {
         Gate::define('viewTelescope', function ($user) {
 
-            return true;
             $password = request()->input('pass');
             
-            if ($password == env('TELESCOPE_PASSWORD')) {
-                request()->session()->put('TELESCOPE_PASSWORD', $password);
+            if ($password == env('HORIZON_PASSWORD')) {
+                request()->session()->put('HORIZON_PASSWORD', $password);
             }
 
-            return env('TELESCOPE_PASSWORD') == request()->session()->get('TELESCOPE_PASSWORD', null);
+            return env('HORIZON_PASSWORD') == request()->session()->get('HORIZON_PASSWORD', null);
             // return in_array($user->email, [
             //     //
             // ]);
