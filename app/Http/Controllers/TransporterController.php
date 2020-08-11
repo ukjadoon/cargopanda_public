@@ -26,15 +26,17 @@ class TransporterController extends Controller
     public function postRegisterCompany(PostRegisterCompany $request)
     {
         if ($request->validated()) {
-           $organization = new Organization;
-           $organization->name = $request->name;
-           $organization->cif = $request->cif;
-           $organization->save();
-           $user = Auth::user();
-           $user->organization_id = $organization->id;
-           $user->save();
+            
+            $organization = new Organization;
+            $organization->name = $request->name;
+            $organization->cif = $request->cif;
+            $organization->save();
+            $user = Auth::user();
+            $user->name = $request->your_name;
+            $user->organization_id = $organization->id;
+            $user->save();
 
-           return redirect('/transporter/dashboard');
+            return redirect('/transporter/dashboard');
         }
     }
 

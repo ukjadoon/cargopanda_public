@@ -28,6 +28,7 @@ class PostRegisterCompany extends FormRequest
             'name' => 'required',
             'cif' => 'required',
             'terms' => 'required',
+            'your_name' => 'required',
         ];
     }
 }
