@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Truck;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class CreateUpdateTruck extends Component
@@ -27,7 +28,10 @@ class CreateUpdateTruck extends Component
             'truck.name' => 'required|min:3',
         ]);
         if (! $this->truckId) {
-            $this->truckId = Truck::create(['name' => $this->truck['name']])->id;
+            $this->truckId = Truck::create([
+                'name' => $this->truck['name'],
+                'organization_id' => Auth::user()->organization_id
+            ])->id;
         } else {
             Truck::find($this->truckId)->update([
                 'name' => $this->truck['name']

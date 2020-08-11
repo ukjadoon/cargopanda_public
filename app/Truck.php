@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Truck extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'organization_id'];
 }

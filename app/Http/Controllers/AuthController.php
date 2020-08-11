@@ -40,7 +40,15 @@ class AuthController extends Controller
         $token = AuthToken::where('token', $token)->first();
         if ($token) {
             $user = User::where('email', $token->email)->first();
-            Auth::login($user);
+            if ($user) {
+                Auth::login($user);
+            } else {
+                $user = factory(User::class)->create([
+                    'email' => $token->email,
+                    'name' => '',
+                    'role' => 'transporter',
+                ]);
+            }
             if ($user->role != 'admin' && $user->organization_id === null) {
                 
                 return redirect('/transporter/register-company');

@@ -66,11 +66,11 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
 
             $password = request()->input('pass');
             
-            if ($password == env('HORIZON_PASSWORD')) {
-                request()->session()->put('HORIZON_PASSWORD', $password);
+            if ($password == env('TELESCOPE_PASSWORD')) {
+                request()->session()->put('TELESCOPE_PASSWORD', $password);
             }
 
-            return env('HORIZON_PASSWORD') == request()->session()->get('HORIZON_PASSWORD', null);
+            return env('TELESCOPE_PASSWORD') == request()->session()->get('TELESCOPE_PASSWORD', null);
             // return in_array($user->email, [
             //     //
             // ]);
