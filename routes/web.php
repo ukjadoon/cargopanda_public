@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\ProcessExpiresOn;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'welcome')->name('home');
+
+Route::get('test', function () {
+    ProcessExpiresOn::dispatch();
+});
 
 Route::get('login', 'AuthController@login')->name('login');
 Route::post('login', 'AuthController@issueToken')->name('issue-token');
