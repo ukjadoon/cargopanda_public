@@ -42,7 +42,17 @@ class TransporterController extends Controller
 
     public function dashboard()
     {
-        return view('transporter.dashboard');
+        $organizationDocumentsCount = Document::where('type', 'organization_doc')->whereHas('organizations', function ($q) {
+            return $q->where('id', Auth::user()->organization_id);
+        })->count();
+        $truckDocumentsCount = Document::where('type', 'truck_doc')->whereHas('trucks', function ($q) {
+            return $q->where('organization_id', Auth::user()->organization_id);
+        })->count();
+        $stats = [
+            ['Your organization docs' => $organizationDocumentsCount],
+            ['Your truck docs' => $truckDocumentsCount]
+        ];
+        return view('transporter.dashboard')->with(compact('stats'));
     }
 
     public function checklist()

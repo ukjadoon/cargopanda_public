@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Document;
 use App\DocumentOrganization;
 use App\DocumentTruck;
 use Illuminate\Http\Request;
@@ -12,7 +13,13 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $organizationDocumentsCount = Document::where('type', 'organization_doc')->count();
+        $truckDocumentsCount = Document::where('type', 'truck_doc')->count();
+        $stats = [
+            ['Total organization docs' => $organizationDocumentsCount],
+            ['Total truck docs' => $truckDocumentsCount]
+        ];
+        return view('admin.dashboard')->with(compact('stats'));
     }
 
     public function checklist()
